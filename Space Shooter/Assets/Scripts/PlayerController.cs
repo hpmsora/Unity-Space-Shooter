@@ -18,16 +18,19 @@ public class PlayerController : MonoBehaviour {
 	public Boundary boundary;
 
 	private Rigidbody rb;
+	private AudioSource audioSource;
 	private float nextFire;
 
 	void Start() {
 		rb = GetComponent<Rigidbody> ();
+		audioSource = GetComponent<AudioSource> ();
 	}
 
 	void Update() {
 		if (Input.GetKey(KeyCode.Space) && Time.time > nextFire) {
 			nextFire = Time.time + fireRate;
 			Instantiate (shot, shotSpawn.position, shotSpawn.rotation);
+			audioSource.Play ();
 		}
 	}
 
